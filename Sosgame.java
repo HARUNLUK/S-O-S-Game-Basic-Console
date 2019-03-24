@@ -5,11 +5,11 @@ import java.util.Scanner;
 public class Sosgame {
 
     static byte playerOnePoint = 0, playerTwoPoint = 0;
-    static String tictactoe[][] = new String[9][15];
-    static boolean[][] CrossKeeper = new boolean[tictactoe.length - 2][tictactoe[0].length - 2];
-    static boolean[][] LineKeeper = new boolean[tictactoe.length][tictactoe[0].length - 2];
-    static boolean[][] ColumnKeeper = new boolean[tictactoe.length - 2][tictactoe[0].length];
-    static boolean[][] CrossKeeperTwo = new boolean[tictactoe.length - 2][tictactoe[0].length-2];
+    static String sosMatrix[][] = new String[9][15];
+    static boolean[][] CrossKeeper = new boolean[sosMatrix.length - 2][sosMatrix[0].length - 2];
+    static boolean[][] LineKeeper = new boolean[sosMatrix.length][sosMatrix[0].length - 2];
+    static boolean[][] ColumnKeeper = new boolean[sosMatrix.length - 2][sosMatrix[0].length];
+    static boolean[][] CrossKeeperTwo = new boolean[sosMatrix.length - 2][sosMatrix[0].length-2];
     static String Language;
     static boolean tr, eng;
 
@@ -85,12 +85,12 @@ public class Sosgame {
 
     static boolean whoWin(String xArray[][]) {
         boolean pointUp = false;
-        for (byte i = 0; i < tictactoe.length; i++) {
-            for (byte j = 0; j < tictactoe[0].length - 2; j++) {
+        for (byte i = 0; i < sosMatrix.length; i++) {
+            for (byte j = 0; j < sosMatrix[0].length - 2; j++) {
                 if (LineKeeper[i][j]) {
                     continue;
                 } else {
-                    if (tictactoe[i][j].equalsIgnoreCase("s") && tictactoe[i][j + 1].equalsIgnoreCase("o") && tictactoe[i][j + 2].equalsIgnoreCase("s")) {
+                    if (sosMatrix[i][j].equalsIgnoreCase("s") && sosMatrix[i][j + 1].equalsIgnoreCase("o") && sosMatrix[i][j + 2].equalsIgnoreCase("s")) {
                         pointUp = true;
                         LineKeeper[i][j] = true;
 
@@ -98,36 +98,36 @@ public class Sosgame {
                 }
             }
         }
-        for (byte i = 0; i < tictactoe.length - 2; i++) {
-            for (byte j = 0; j < tictactoe[0].length; j++) {
+        for (byte i = 0; i < sosMatrix.length - 2; i++) {
+            for (byte j = 0; j < sosMatrix[0].length; j++) {
                 if (ColumnKeeper[i][j]) {
                     continue;
                 } else {
-                    if (tictactoe[i][j].equalsIgnoreCase("s") && tictactoe[i + 1][j].equalsIgnoreCase("o") && tictactoe[i + 2][j].equalsIgnoreCase("s")) {
+                    if (sosMatrix[i][j].equalsIgnoreCase("s") && sosMatrix[i + 1][j].equalsIgnoreCase("o") && sosMatrix[i + 2][j].equalsIgnoreCase("s")) {
                         pointUp = true;
                         ColumnKeeper[i][j] = true;
                     }
                 }
             }
         }
-        for (byte i = 0; i < tictactoe.length - 2; i++) {
-            for (byte j = 0; j < tictactoe[0].length - 2; j++) {
+        for (byte i = 0; i < sosMatrix.length - 2; i++) {
+            for (byte j = 0; j < sosMatrix[0].length - 2; j++) {
                 if (CrossKeeper[i][j]) {
                     continue;
                 } else {
-                    if (tictactoe[i][j].equalsIgnoreCase("s") && tictactoe[i + 1][j + 1].equalsIgnoreCase("o") && tictactoe[i + 2][j + 2].equalsIgnoreCase("s")) {
+                    if (sosMatrix[i][j].equalsIgnoreCase("s") && sosMatrix[i + 1][j + 1].equalsIgnoreCase("o") && sosMatrix[i + 2][j + 2].equalsIgnoreCase("s")) {
                         pointUp = true;
                         CrossKeeper[i][j] = true;
                     }
                 }
             }
         }
-        for (byte i = 0; i < tictactoe.length-2; i++) {
-            for (byte j = 2; j < tictactoe[0].length; j++) {
+        for (byte i = 0; i < sosMatrix.length-2; i++) {
+            for (byte j = 2; j < sosMatrix[0].length; j++) {
                 if (CrossKeeperTwo[i][j-2]) {
                     continue;
                 } else {
-                    if (tictactoe[i][j].equalsIgnoreCase("s") && tictactoe[i + 1][j -1].equalsIgnoreCase("o") && tictactoe[i + 2][j-2].equalsIgnoreCase("s")) {
+                    if (sosMatrix[i][j].equalsIgnoreCase("s") && sosMatrix[i + 1][j -1].equalsIgnoreCase("o") && sosMatrix[i + 2][j-2].equalsIgnoreCase("s")) {
                         pointUp = true;
                         CrossKeeperTwo[i][j-2] = true;
                     }
@@ -140,9 +140,9 @@ public class Sosgame {
     static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
-        for (int i = 0; i < tictactoe.length; i++) {
-            for (int j = 0; j < tictactoe[i].length; j++) {
-                tictactoe[i][j] = ".";
+        for (int i = 0; i < sosMatrix.length; i++) {
+            for (int j = 0; j < sosMatrix[i].length; j++) {
+                sosMatrix[i][j] = ".";
             }
         }
 
@@ -173,8 +173,8 @@ public class Sosgame {
         }
         int coordinateOne, coordinateTwo;
         String symbolOne = "", symbolTwo = "";
-        ticTacToeDraw(tictactoe);
-        for (int i = 0; i < tictactoe.length * tictactoe[0].length; i++) {
+        ticTacToeDraw(sosMatrix);
+        for (int i = 0; i < sosMatrix.length * sosMatrix[0].length; i++) {
             if (i % 2 == 0) {
                 if (tr) {
                     System.out.println("SIRA BİRİNCİ OYUNUCUDA");
@@ -182,20 +182,20 @@ public class Sosgame {
                     System.out.println("PLAYER ONE'TURN");
                 }
                 coordinateOne = input.nextInt() - 1;
-                while (coordinateOne > tictactoe.length - 1 || coordinateOne < 0) {
+                while (coordinateOne > sosMatrix.length - 1 || coordinateOne < 0) {
                     if (tr) {
-                        System.out.println("1 ile " + tictactoe.length + " arası giriniz");
+                        System.out.println("1 ile " + sosMatrix.length + " arası giriniz");
                     } else {
-                        System.out.println("PLEASE ENTER A NUMBER BETWEEN 1 AND " + tictactoe.length);
+                        System.out.println("PLEASE ENTER A NUMBER BETWEEN 1 AND " + sosMatrix.length);
                     }
                     coordinateOne = input.nextInt() - 1;
                 }
                 coordinateTwo = input.nextInt() - 1;
-                while (coordinateTwo > tictactoe[0].length - 1 || coordinateTwo < 0) {
+                while (coordinateTwo > sosMatrix[0].length - 1 || coordinateTwo < 0) {
                     if (tr) {
-                        System.out.println("1 ile " + tictactoe.length + " arası giriniz");
+                        System.out.println("1 ile " + sosMatrix.length + " arası giriniz");
                     } else {
-                        System.out.println("PLEASE ENTER A NUMBER BETWEEN 1 AND " + tictactoe[0].length);
+                        System.out.println("PLEASE ENTER A NUMBER BETWEEN 1 AND " + sosMatrix[0].length);
                     }
                     coordinateTwo = input.nextInt() - 1;
                 }
@@ -208,7 +208,7 @@ public class Sosgame {
                     }
                     symbolOne = input.nextLine();
                 }
-                if (tictactoe[coordinateOne][coordinateTwo].equalsIgnoreCase("s") || tictactoe[coordinateOne][coordinateTwo].equalsIgnoreCase("O")) {
+                if (sosMatrix[coordinateOne][coordinateTwo].equalsIgnoreCase("s") || sosMatrix[coordinateOne][coordinateTwo].equalsIgnoreCase("O")) {
                     if (tr) {
                         System.out.println("DENEDİĞİNİZ KOORDİNAT DOLU LÜTFEN BAŞKA KOORDİNAT DENEYİNİZ");
                     } else {
@@ -216,8 +216,8 @@ public class Sosgame {
                     }
                     i--;
                 } else {
-                    tictactoe[coordinateOne][coordinateTwo] = symbolOne;
-                    if (whoWin(tictactoe)) {
+                    sosMatrix[coordinateOne][coordinateTwo] = symbolOne;
+                    if (whoWin(sosMatrix)) {
                         playerOnePoint++;
                         if (tr) {
                             System.out.println("S O S OLDU DEVAM");
@@ -234,20 +234,20 @@ public class Sosgame {
                     System.out.println("PLAYER TWO'TURN");
                 }
                 coordinateOne = input.nextInt() - 1;
-                while (coordinateOne > tictactoe.length - 1 || coordinateOne < 0) {
+                while (coordinateOne > sosMatrix.length - 1 || coordinateOne < 0) {
                     if (tr) {
-                        System.out.println("1 ile " + tictactoe.length + " arası giriniz");
+                        System.out.println("1 ile " + sosMatrix.length + " arası giriniz");
                     } else {
-                        System.out.println("PLEASE ENTER A NUMBER BETWEEN 1 AND " + tictactoe.length);
+                        System.out.println("PLEASE ENTER A NUMBER BETWEEN 1 AND " + sosMatrix.length);
                     }
                     coordinateOne = input.nextInt() - 1;
                 }
                 coordinateTwo = input.nextInt() - 1;
-                while (coordinateTwo > tictactoe[0].length - 1 || coordinateTwo < 0) {
+                while (coordinateTwo > sosMatrix[0].length - 1 || coordinateTwo < 0) {
                     if (tr) {
-                        System.out.println("1 ile " + tictactoe.length + " arası giriniz");
+                        System.out.println("1 ile " + sosMatrix.length + " arası giriniz");
                     } else {
-                        System.out.println("PLEASE ENTER A NUMBER BETWEEN 1 AND " + tictactoe[0].length);
+                        System.out.println("PLEASE ENTER A NUMBER BETWEEN 1 AND " + sosMatrix[0].length);
                     }
                     coordinateTwo = input.nextInt() - 1;
                 }
@@ -260,7 +260,7 @@ public class Sosgame {
                     }
                     symbolTwo = input.nextLine();
                 }
-                if (tictactoe[coordinateOne][coordinateTwo].equalsIgnoreCase("S") || tictactoe[coordinateOne][coordinateTwo].equalsIgnoreCase("O")) {
+                if (sosMatrix[coordinateOne][coordinateTwo].equalsIgnoreCase("S") || sosMatrix[coordinateOne][coordinateTwo].equalsIgnoreCase("O")) {
                     if (tr) {
                         System.out.println("BU KOORDİNAT DOLU LÜTFEN BAŞKA KOORDİNAT DENEYİNİZ");
                     } else {
@@ -268,8 +268,8 @@ public class Sosgame {
                     }
                     i--;
                 } else {
-                    tictactoe[coordinateOne][coordinateTwo] = input.nextLine();
-                    if (whoWin(tictactoe)) {
+                    sosMatrix[coordinateOne][coordinateTwo] = input.nextLine();
+                    if (whoWin(sosMatrix)) {
                         playerTwoPoint++;
                         if (tr) {
                             System.out.println("S O S OLDU DEVAM");
@@ -280,7 +280,7 @@ public class Sosgame {
                     }
                 }
             }
-            ticTacToeDraw(tictactoe);
+            ticTacToeDraw(sosMatrix);
         }
         if (playerOnePoint > playerTwoPoint) {
             if (tr) {
