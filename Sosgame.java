@@ -44,18 +44,34 @@ public class Sosgame {
                         System.out.print("|");
                     }
                     if (i == (array.length * 2) / 2 - 1 && j == array[0].length * 2) {
-                        System.out.print("            Birinci Oyuncu Puan : " + playerOnePoint);
+                        if(tr){
+                            System.out.print("            Birinci OYUNCU PUAN : " + playerOnePoint);
+                        }else{
+                            System.out.print("            PLAYER ONE'S POİNT : " + playerOnePoint);
+                        }
                     }
                     if (i == (array.length * 2) / 2 + 1 && j == array[0].length * 2) {
-                        System.out.print("            İkinci Oyuncu Puan  : " + playerTwoPoint);
+                        if(tr){
+                            System.out.print("            İKİNCİ OYUNCU PUAN : " + playerOnePoint);
+                        }else{
+                            System.out.print("            PLAYER TWO'S POİNT : " + playerOnePoint);
+                        }
                     }
                 } else {
                     System.out.print("--");
                     if (i == (array.length * 2) / 2 - 1 && j == array[0].length * 2) {
-                        System.out.print("            Birinci Oyuncu Puan : " + playerOnePoint);
+                       if(tr){
+                            System.out.print("            Birinci OYUNCU PUAN : " + playerOnePoint);
+                        }else{
+                            System.out.print("            PLAYER ONE'S POİNT : " + playerOnePoint);
+                        }
                     }
                     if (i == (array.length * 2) / 2 + 1 && j == array[0].length * 2) {
-                        System.out.print("            İkinci Oyuncu Puan  : " + playerTwoPoint);
+                        if(tr){
+                            System.out.print("            İKİNCİ OYUNCU PUAN : " + playerOnePoint);
+                        }else{
+                            System.out.print("            PLAYER TWO'S POİNT : " + playerOnePoint);
+                        }
                     }
                 }
             }
@@ -150,9 +166,9 @@ public class Sosgame {
             System.out.println("ÖRNEK : \n1 2 \nS \nVEYA \n3 4 \nO");
         } else {
             System.out.println("THİS İS A S-0-S GAME");
-            System.out.println("PLAYER ENTERs THE COORDİNATE AND THE SYMBOL THEY WANTS IN ORDER");
+            System.out.println("PLAYER ENTERS WHERE THE COORDİNATE AND THE SYMBOL THEY WANTS IN ORDER");
             System.out.println("WHO MAKES S O S AS VERTİCAL , HORIZONAL OR CROSS EARNS THE POINT");
-            System.out.println("ONE WHO HAS THE TURN CAN ENTER A CORDİNATE AND A SYMBOL");
+            System.out.println("WHO ONE IN ORDER CAN ENTER COORDİNATE AND SYMBOL");
             System.out.println("EXAMPLE : \n1 2 \nS \nVEYA \n3 4 \nO");
         }
         int coordinateOne, coordinateTwo;
