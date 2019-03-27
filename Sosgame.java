@@ -9,7 +9,7 @@ public class Sosgame {
     static boolean[][] CrossKeeper = new boolean[sosMatrix.length - 2][sosMatrix[0].length - 2];
     static boolean[][] LineKeeper = new boolean[sosMatrix.length][sosMatrix[0].length - 2];
     static boolean[][] ColumnKeeper = new boolean[sosMatrix.length - 2][sosMatrix[0].length];
-    static boolean[][] CrossKeeperTwo = new boolean[sosMatrix.length - 2][sosMatrix[0].length-2];
+    static boolean[][] CrossKeeperTwo = new boolean[sosMatrix.length - 2][sosMatrix[0].length - 2];
     static String Language;
     static boolean tr, eng;
 
@@ -44,33 +44,33 @@ public class Sosgame {
                         System.out.print("|");
                     }
                     if (i == (array.length * 2) / 2 - 1 && j == array[0].length * 2) {
-                        if(tr){
+                        if (tr) {
                             System.out.print("            Birinci OYUNCU PUAN : " + playerOnePoint);
-                        }else{
+                        } else {
                             System.out.print("            PLAYER ONE'S POİNT : " + playerOnePoint);
                         }
                     }
                     if (i == (array.length * 2) / 2 + 1 && j == array[0].length * 2) {
-                        if(tr){
-                            System.out.print("            İKİNCİ OYUNCU PUAN : " + playerOnePoint);
-                        }else{
-                            System.out.print("            PLAYER TWO'S POİNT : " + playerOnePoint);
+                        if (tr) {
+                            System.out.print("            İKİNCİ OYUNCU PUAN : " + playerTwoPoint);
+                        } else {
+                            System.out.print("            PLAYER TWO'S POİNT : " + playerTwoPoint);
                         }
                     }
                 } else {
                     System.out.print("--");
                     if (i == (array.length * 2) / 2 - 1 && j == array[0].length * 2) {
-                       if(tr){
+                        if (tr) {
                             System.out.print("            Birinci OYUNCU PUAN : " + playerOnePoint);
-                        }else{
+                        } else {
                             System.out.print("            PLAYER ONE'S POİNT : " + playerOnePoint);
                         }
                     }
                     if (i == (array.length * 2) / 2 + 1 && j == array[0].length * 2) {
-                        if(tr){
-                            System.out.print("            İKİNCİ OYUNCU PUAN : " + playerOnePoint);
-                        }else{
-                            System.out.print("            PLAYER TWO'S POİNT : " + playerOnePoint);
+                        if (tr) {
+                            System.out.print("            İKİNCİ OYUNCU PUAN : " + playerTwoPoint);
+                        } else {
+                            System.out.print("            PLAYER TWO'S POİNT : " + playerTwoPoint);
                         }
                     }
                 }
@@ -83,7 +83,7 @@ public class Sosgame {
         }
     }
 
-    static boolean whoWin(String xArray[][]) {
+    static boolean whoWinPlayerOne(String xArray[][]) {
         boolean pointUp = false;
         for (byte i = 0; i < sosMatrix.length; i++) {
             for (byte j = 0; j < sosMatrix[0].length - 2; j++) {
@@ -92,6 +92,7 @@ public class Sosgame {
                 } else {
                     if (sosMatrix[i][j].equalsIgnoreCase("s") && sosMatrix[i][j + 1].equalsIgnoreCase("o") && sosMatrix[i][j + 2].equalsIgnoreCase("s")) {
                         pointUp = true;
+                        playerOnePoint++;
                         LineKeeper[i][j] = true;
 
                     }
@@ -105,6 +106,7 @@ public class Sosgame {
                 } else {
                     if (sosMatrix[i][j].equalsIgnoreCase("s") && sosMatrix[i + 1][j].equalsIgnoreCase("o") && sosMatrix[i + 2][j].equalsIgnoreCase("s")) {
                         pointUp = true;
+                        playerOnePoint++;
                         ColumnKeeper[i][j] = true;
                     }
                 }
@@ -117,19 +119,79 @@ public class Sosgame {
                 } else {
                     if (sosMatrix[i][j].equalsIgnoreCase("s") && sosMatrix[i + 1][j + 1].equalsIgnoreCase("o") && sosMatrix[i + 2][j + 2].equalsIgnoreCase("s")) {
                         pointUp = true;
+                        playerOnePoint++;
                         CrossKeeper[i][j] = true;
                     }
                 }
             }
         }
-        for (byte i = 0; i < sosMatrix.length-2; i++) {
+        for (byte i = 0; i < sosMatrix.length - 2; i++) {
             for (byte j = 2; j < sosMatrix[0].length; j++) {
-                if (CrossKeeperTwo[i][j-2]) {
+                if (CrossKeeperTwo[i][j - 2]) {
                     continue;
                 } else {
-                    if (sosMatrix[i][j].equalsIgnoreCase("s") && sosMatrix[i + 1][j -1].equalsIgnoreCase("o") && sosMatrix[i + 2][j-2].equalsIgnoreCase("s")) {
+                    if (sosMatrix[i][j].equalsIgnoreCase("s") && sosMatrix[i + 1][j - 1].equalsIgnoreCase("o") && sosMatrix[i + 2][j - 2].equalsIgnoreCase("s")) {
                         pointUp = true;
-                        CrossKeeperTwo[i][j-2] = true;
+                        playerOnePoint++;
+                        CrossKeeperTwo[i][j - 2] = true;
+                    }
+                }
+            }
+        }
+        return pointUp;
+    }
+
+    static boolean whoWinPlayerTwo(String xArray[][]) {
+        boolean pointUp = false;
+        for (byte i = 0; i < sosMatrix.length; i++) {
+            for (byte j = 0; j < sosMatrix[0].length - 2; j++) {
+                if (LineKeeper[i][j]) {
+                    continue;
+                } else {
+                    if (sosMatrix[i][j].equalsIgnoreCase("s") && sosMatrix[i][j + 1].equalsIgnoreCase("o") && sosMatrix[i][j + 2].equalsIgnoreCase("s")) {
+                        pointUp = true;
+                        playerTwoPoint++;
+                        LineKeeper[i][j] = true;
+
+                    }
+                }
+            }
+        }
+        for (byte i = 0; i < sosMatrix.length - 2; i++) {
+            for (byte j = 0; j < sosMatrix[0].length; j++) {
+                if (ColumnKeeper[i][j]) {
+                    continue;
+                } else {
+                    if (sosMatrix[i][j].equalsIgnoreCase("s") && sosMatrix[i + 1][j].equalsIgnoreCase("o") && sosMatrix[i + 2][j].equalsIgnoreCase("s")) {
+                        pointUp = true;
+                        playerTwoPoint++;
+                        ColumnKeeper[i][j] = true;
+                    }
+                }
+            }
+        }
+        for (byte i = 0; i < sosMatrix.length - 2; i++) {
+            for (byte j = 0; j < sosMatrix[0].length - 2; j++) {
+                if (CrossKeeper[i][j]) {
+                    continue;
+                } else {
+                    if (sosMatrix[i][j].equalsIgnoreCase("s") && sosMatrix[i + 1][j + 1].equalsIgnoreCase("o") && sosMatrix[i + 2][j + 2].equalsIgnoreCase("s")) {
+                        pointUp = true;
+                        playerTwoPoint++;
+                        CrossKeeper[i][j] = true;
+                    }
+                }
+            }
+        }
+        for (byte i = 0; i < sosMatrix.length - 2; i++) {
+            for (byte j = 2; j < sosMatrix[0].length; j++) {
+                if (CrossKeeperTwo[i][j - 2]) {
+                    continue;
+                } else {
+                    if (sosMatrix[i][j].equalsIgnoreCase("s") && sosMatrix[i + 1][j - 1].equalsIgnoreCase("o") && sosMatrix[i + 2][j - 2].equalsIgnoreCase("s")) {
+                        pointUp = true;
+                        playerTwoPoint++;
+                        CrossKeeperTwo[i][j - 2] = true;
                     }
                 }
             }
@@ -217,8 +279,7 @@ public class Sosgame {
                     i--;
                 } else {
                     sosMatrix[coordinateOne][coordinateTwo] = symbolOne;
-                    if (whoWin(sosMatrix)) {
-                        playerOnePoint++;
+                    if (whoWinPlayerOne(sosMatrix)) {
                         if (tr) {
                             System.out.println("S O S OLDU DEVAM");
                         } else {
@@ -268,9 +329,8 @@ public class Sosgame {
                     }
                     i--;
                 } else {
-                    sosMatrix[coordinateOne][coordinateTwo] = input.nextLine();
-                    if (whoWin(sosMatrix)) {
-                        playerTwoPoint++;
+                    sosMatrix[coordinateOne][coordinateTwo] = symbolTwo;
+                    if (whoWinPlayerTwo(sosMatrix)) {
                         if (tr) {
                             System.out.println("S O S OLDU DEVAM");
                         } else {
